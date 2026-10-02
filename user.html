@@ -1,0 +1,3785 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Centro de Conhecimento Normativo</title>
+
+  <!-- Font Awesome -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+    integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
+  />
+
+  <!-- Estilos -->
+  <style>
+    /* ============================================================
+   CENTRO DE CONHECIMENTO NORMATIVO
+   Fluent Design / Microsoft 365 — Corporate UI
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   1. RESET & BASE
+────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Brand palette */
+  --brand-100: #eff6fc;
+  --brand-200: #deecf9;
+  --brand-300: #c7e0f4;
+  --brand-400: #a9d3f2;
+  --brand-500: #71afe5;
+  --brand-600: #2b88d8;
+  --brand-700: #0078d4;
+  --brand-800: #106ebe;
+  --brand-900: #005a9e;
+  --brand-950: #004578;
+
+  /* Ink palette */
+  --ink-50:  #faf9f8;
+  --ink-100: #f3f2f1;
+  --ink-200: #edebe9;
+  --ink-300: #e1dfdd;
+  --ink-400: #c8c6c4;
+  --ink-500: #a19f9d;
+  --ink-600: #797775;
+  --ink-700: #605e5c;
+  --ink-800: #3b3a39;
+  --ink-900: #201f1e;
+
+  /* Semantic */
+  --color-bg: #f3f2f1;
+  --color-surface: #ffffff;
+  --color-border: #e1dfdd;
+  --color-border-light: #edebe9;
+  --color-primary: #0078d4;
+  --color-primary-hover: #106ebe;
+  --color-primary-light: #eff6fc;
+  --color-danger: #d13438;
+  --color-danger-hover: #a80000;
+  --color-danger-light: #fde7e9;
+  --color-success: #107c10;
+  --color-success-light: #dff6dd;
+  --color-text: #201f1e;
+  --color-text-secondary: #605e5c;
+  --color-text-tertiary: #797775;
+
+  /* Typography */
+  --font-base: 'Segoe UI', 'Inter', system-ui, -apple-system, sans-serif;
+  --font-size-xs: 11px;
+  --font-size-sm: 12px;
+  --font-size-base: 14px;
+  --font-size-md: 16px;
+  --font-size-lg: 18px;
+  --font-size-xl: 20px;
+  --font-size-2xl: 24px;
+  --font-size-3xl: 28px;
+
+  /* Spacing */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 20px;
+  --spacing-6: 24px;
+  --spacing-8: 32px;
+  --spacing-10: 40px;
+
+  /* Layout */
+  --sidebar-width: 288px;
+  --topbar-height: 56px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 3px rgba(0,0,0,.08), 0 1px 2px rgba(0,0,0,.05);
+  --shadow-md: 0 4px 12px rgba(0,0,0,.1), 0 2px 4px rgba(0,0,0,.06);
+  --shadow-lg: 0 8px 24px rgba(0,0,0,.12), 0 4px 8px rgba(0,0,0,.08);
+
+  /* Radius */
+  --radius-sm: 3px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  /* Transitions */
+  --transition: 0.15s ease;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a { color: var(--color-primary); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+ul, ol { list-style: none; }
+
+/* ──────────────────────────────────────────────
+   2. LAYOUT SHELL
+────────────────────────────────────────────── */
+.ckn-shell {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* ──────────────────────────────────────────────
+   3. SIDEBAR
+────────────────────────────────────────────── */
+.ckn-sidebar {
+  width: var(--sidebar-width);
+  flex-shrink: 0;
+  background: var(--color-surface);
+  border-right: 1px solid var(--color-border);
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  transition: transform var(--transition);
+}
+
+.ckn-sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-5) var(--spacing-5);
+  border-bottom: 1px solid var(--color-border-light);
+  min-height: var(--topbar-height);
+}
+
+.ckn-sidebar__brand-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.ckn-sidebar__brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.ckn-sidebar__brand-title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ckn-sidebar__brand-subtitle {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  font-weight: 400;
+  margin-top: 2px;
+}
+
+.ckn-sidebar__nav {
+  padding: var(--spacing-3) 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.ckn-sidebar__nav-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ckn-sidebar__nav-item {
+  position: relative;
+}
+
+.ckn-sidebar__nav-link {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: 10px var(--spacing-5);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-base);
+  font-weight: 400;
+  transition: background var(--transition), color var(--transition);
+  text-decoration: none;
+  border-radius: 0;
+}
+
+.ckn-sidebar__nav-link:hover {
+  background: var(--ink-100);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.ckn-sidebar__nav-item.is-active .ckn-sidebar__nav-link {
+  color: var(--color-primary);
+  font-weight: 600;
+  background: var(--brand-100);
+}
+
+.ckn-sidebar__nav-item.is-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  bottom: 4px;
+  width: 3px;
+  background: var(--color-primary);
+  border-radius: 0 2px 2px 0;
+}
+
+.ckn-sidebar__nav-icon {
+  font-size: 15px;
+  width: 20px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   4. TOPBAR
+────────────────────────────────────────────── */
+.ckn-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.ckn-topbar {
+  height: var(--topbar-height);
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: 0 var(--spacing-6);
+  flex-shrink: 0;
+  z-index: 50;
+}
+
+.ckn-topbar__menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-text-secondary);
+  font-size: 18px;
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.ckn-topbar__menu-btn:hover { background: var(--ink-100); }
+
+.ckn-topbar__title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text);
+  flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ckn-topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   5. CONTENT AREA
+────────────────────────────────────────────── */
+#ckn-content {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--spacing-8) var(--spacing-8);
+  scroll-behavior: smooth;
+}
+
+.ckn-page {
+  max-width: 1100px;
+}
+
+.ckn-page__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-6);
+}
+
+.ckn-page__title {
+  font-size: var(--font-size-2xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.ckn-page__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  margin-top: var(--spacing-1);
+}
+
+/* ──────────────────────────────────────────────
+   6. TOOLBAR / SEARCH
+────────────────────────────────────────────── */
+.ckn-toolbar {
+  margin-bottom: var(--spacing-5);
+}
+
+.ckn-search {
+  position: relative;
+  max-width: 440px;
+}
+
+.ckn-search__icon {
+  position: absolute;
+  left: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--color-text-tertiary);
+  font-size: 13px;
+  pointer-events: none;
+}
+
+.ckn-search__input {
+  width: 100%;
+  height: 36px;
+  padding: 0 36px 0 36px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-surface);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+.ckn-search__input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0,120,212,.15);
+}
+
+.ckn-search__clear {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--color-text-tertiary);
+  cursor: pointer;
+  padding: 4px 6px;
+  font-size: 12px;
+  border-radius: var(--radius-sm);
+}
+.ckn-search__clear:hover { color: var(--color-text); background: var(--ink-200); }
+
+/* ──────────────────────────────────────────────
+   7. CARDS GRID
+────────────────────────────────────────────── */
+.ckn-card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--spacing-4);
+}
+
+.ckn-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  transition: box-shadow var(--transition), border-color var(--transition);
+}
+
+.ckn-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-border);
+}
+
+.ckn-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4) var(--spacing-4) 0;
+  gap: var(--spacing-2);
+}
+
+.ckn-card__tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-1);
+}
+
+.ckn-card__actions {
+  display: flex;
+  gap: var(--spacing-1);
+  flex-shrink: 0;
+}
+
+.ckn-card__body {
+  flex: 1;
+  padding: var(--spacing-3) var(--spacing-4);
+}
+
+.ckn-card__title {
+  font-size: var(--font-size-md);
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: var(--spacing-2);
+  line-height: 1.3;
+}
+
+.ckn-card__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  margin-bottom: var(--spacing-2);
+}
+
+.ckn-card__meta {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  line-height: 1.5;
+}
+
+.ckn-card__meta i {
+  color: var(--color-primary);
+  margin-right: 4px;
+}
+
+.ckn-card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3) var(--spacing-4) var(--spacing-4);
+  border-top: 1px solid var(--color-border-light);
+  margin-top: var(--spacing-3);
+  gap: var(--spacing-2);
+}
+
+.ckn-card__stats {
+  display: flex;
+  gap: var(--spacing-3);
+  flex-wrap: wrap;
+}
+
+.ckn-card__stat {
+  font-size: var(--font-size-xs);
+  color: var(--color-text-tertiary);
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* ──────────────────────────────────────────────
+   8. BADGES
+────────────────────────────────────────────── */
+.ckn-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 8px;
+  background: var(--brand-100);
+  color: var(--brand-900);
+  border-radius: 100px;
+  font-size: var(--font-size-xs);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.ckn-badge--lg {
+  font-size: var(--font-size-sm);
+  padding: 4px 12px;
+}
+
+.ckn-badge--outline {
+  background: transparent;
+  border: 1px solid var(--brand-400);
+  color: var(--brand-800);
+}
+
+.ckn-badge--neutral {
+  background: var(--ink-200);
+  color: var(--ink-700);
+}
+
+.ckn-badge--process {
+  background: var(--brand-100);
+  color: var(--brand-900);
+}
+
+/* ──────────────────────────────────────────────
+   9. BUTTONS
+────────────────────────────────────────────── */
+.ckn-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: 6px 16px;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background var(--transition), border-color var(--transition), color var(--transition), box-shadow var(--transition);
+  line-height: 1.4;
+}
+
+.ckn-btn--primary {
+  background: var(--color-primary);
+  color: #fff;
+  border-color: var(--color-primary);
+}
+.ckn-btn--primary:hover {
+  background: var(--color-primary-hover);
+  border-color: var(--color-primary-hover);
+  text-decoration: none;
+  color: #fff;
+}
+
+.ckn-btn--secondary {
+  background: var(--color-surface);
+  color: var(--color-primary);
+  border-color: var(--color-primary);
+}
+.ckn-btn--secondary:hover {
+  background: var(--brand-100);
+  text-decoration: none;
+}
+
+.ckn-btn--ghost {
+  background: transparent;
+  color: var(--color-text-secondary);
+  border-color: var(--color-border);
+}
+.ckn-btn--ghost:hover {
+  background: var(--ink-100);
+  color: var(--color-text);
+  text-decoration: none;
+}
+
+.ckn-btn--danger {
+  background: var(--color-danger);
+  color: #fff;
+  border-color: var(--color-danger);
+}
+.ckn-btn--danger:hover {
+  background: var(--color-danger-hover);
+  border-color: var(--color-danger-hover);
+  text-decoration: none;
+  color: #fff;
+}
+
+.ckn-btn--sm {
+  padding: 4px 10px;
+  font-size: var(--font-size-sm);
+  gap: var(--spacing-1);
+}
+
+.ckn-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 30px;
+  height: 30px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  transition: background var(--transition), color var(--transition);
+}
+.ckn-icon-btn:hover {
+  background: var(--ink-100);
+  color: var(--color-text);
+}
+.ckn-icon-btn--danger:hover {
+  background: var(--color-danger-light);
+  color: var(--color-danger);
+}
+
+/* ──────────────────────────────────────────────
+   10. FORMS
+────────────────────────────────────────────── */
+.ckn-form-row {
+  display: grid;
+  gap: var(--spacing-4);
+  margin-bottom: var(--spacing-4);
+}
+
+.ckn-form-row--2 { grid-template-columns: 1fr 1fr; }
+
+.ckn-form-group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+  margin-bottom: var(--spacing-4);
+}
+.ckn-form-group:last-child { margin-bottom: 0; }
+
+.ckn-label {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.ckn-label .required {
+  color: var(--color-danger);
+  margin-left: 2px;
+}
+
+.ckn-input {
+  width: 100%;
+  height: 36px;
+  padding: 0 var(--spacing-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  font-family: var(--font-base);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  background: var(--color-surface);
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+}
+.ckn-input:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px rgba(0,120,212,.15);
+}
+.ckn-input::placeholder { color: var(--color-text-tertiary); }
+
+.ckn-textarea {
+  height: auto;
+  padding: var(--spacing-2) var(--spacing-3);
+  resize: vertical;
+  line-height: 1.5;
+}
+
+.ckn-input--date { max-width: 160px; }
+
+.ckn-form-section {
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-4);
+  overflow: hidden;
+}
+
+.ckn-form-section__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--ink-50);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.ckn-form-section__title {
+  font-size: var(--font-size-sm);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ckn-subitem {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-4);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.ckn-subitem:last-child { border-bottom: none; }
+
+.ckn-subitem--single {
+  align-items: center;
+}
+
+.ckn-subitem__num {
+  width: 24px;
+  height: 24px;
+  background: var(--brand-100);
+  color: var(--brand-800);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ckn-subitem__fields {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.ckn-form-empty {
+  padding: var(--spacing-3) var(--spacing-4);
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Checkboxes */
+.ckn-checkbox-list {
+  padding: var(--spacing-2) var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.ckn-checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-2) var(--spacing-2);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.ckn-checkbox-item:hover { background: var(--ink-100); }
+
+.ckn-checkbox {
+  width: 16px;
+  height: 16px;
+  accent-color: var(--color-primary);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.ckn-checkbox-item__label {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+/* ──────────────────────────────────────────────
+   11. MODALS
+────────────────────────────────────────────── */
+.ckn-modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  align-items: flex-start;
+  justify-content: center;
+  padding: var(--spacing-8) var(--spacing-4);
+  overflow-y: auto;
+}
+
+.ckn-modal.is-open {
+  display: flex;
+}
+
+.ckn-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 0;
+}
+
+.ckn-modal__container {
+  position: relative;
+  z-index: 1;
+  background: var(--color-surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 64px);
+  overflow: hidden;
+}
+
+.ckn-modal__container--sm { max-width: 420px; }
+.ckn-modal__container--lg { max-width: 680px; }
+
+.ckn-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-5) var(--spacing-6);
+  border-bottom: 1px solid var(--color-border-light);
+  flex-shrink: 0;
+}
+
+.ckn-modal__title {
+  font-size: var(--font-size-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ckn-modal__close {
+  background: transparent;
+  border: none;
+  color: var(--color-text-tertiary);
+  font-size: 16px;
+  cursor: pointer;
+  padding: var(--spacing-2);
+  border-radius: var(--radius-sm);
+  transition: background var(--transition), color var(--transition);
+}
+.ckn-modal__close:hover { background: var(--ink-100); color: var(--color-text); }
+
+.ckn-modal__body {
+  padding: var(--spacing-6);
+  overflow-y: auto;
+  flex: 1;
+}
+
+.ckn-modal__footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+  padding: var(--spacing-4) var(--spacing-6);
+  border-top: 1px solid var(--color-border-light);
+  flex-shrink: 0;
+}
+
+body.modal-open { overflow: hidden; }
+
+/* ──────────────────────────────────────────────
+   12. DETAIL PAGES
+────────────────────────────────────────────── */
+.ckn-detail-page__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-6);
+}
+
+.ckn-detail-page__admin-actions {
+  display: flex;
+  gap: var(--spacing-2);
+}
+
+.ckn-detail-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+  margin-bottom: var(--spacing-8);
+  flex-wrap: wrap;
+}
+
+.ckn-detail-header__title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+}
+
+.ckn-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: var(--spacing-8);
+  align-items: start;
+}
+
+.ckn-detail-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-4);
+}
+.ckn-detail-section:last-child { margin-bottom: 0; }
+
+.ckn-detail-section__title {
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  color: var(--color-text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  margin-bottom: var(--spacing-3);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+}
+
+.ckn-detail-section__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+.ckn-detail-section__empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* Documents list */
+.ckn-doc-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.ckn-doc-list__item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+}
+
+.ckn-doc-list__item i {
+  color: var(--color-text-tertiary);
+  flex-shrink: 0;
+}
+
+.ckn-link {
+  color: var(--color-primary);
+}
+.ckn-link:hover { text-decoration: underline; }
+
+/* History list */
+.ckn-history-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.ckn-history-list__item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border-light);
+}
+.ckn-history-list__item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.ckn-history-list__date {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  font-family: var(--font-base);
+}
+
+.ckn-history-list__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* Relation cards */
+.ckn-relation-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.ckn-relation-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-3);
+  background: var(--ink-50);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-base);
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  transition: background var(--transition), border-color var(--transition);
+  width: 100%;
+}
+.ckn-relation-card:hover {
+  background: var(--brand-100);
+  border-color: var(--brand-400);
+  color: var(--color-primary);
+}
+
+.ckn-relation-card__arrow {
+  margin-left: auto;
+  font-size: 11px;
+  color: var(--color-text-tertiary);
+}
+
+/* Steps */
+.ckn-steps-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+  counter-reset: none;
+}
+
+.ckn-steps-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-3);
+}
+
+.ckn-steps-list__num {
+  width: 28px;
+  height: 28px;
+  background: var(--brand-100);
+  color: var(--brand-800);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.ckn-steps-list__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.6;
+  padding-top: 4px;
+}
+
+/* ──────────────────────────────────────────────
+   13. EMPTY STATE
+────────────────────────────────────────────── */
+.ckn-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-10) var(--spacing-6);
+  text-align: center;
+  grid-column: 1 / -1;
+}
+
+.ckn-empty-state__icon {
+  font-size: 48px;
+  color: var(--ink-400);
+  margin-bottom: var(--spacing-4);
+}
+
+.ckn-empty-state__title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-2);
+}
+
+.ckn-empty-state__subtitle {
+  font-size: var(--font-size-base);
+  color: var(--color-text-tertiary);
+  max-width: 320px;
+}
+
+/* ──────────────────────────────────────────────
+   14. TOAST
+────────────────────────────────────────────── */
+.ckn-toast {
+  position: fixed;
+  bottom: var(--spacing-8);
+  left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding: var(--spacing-3) var(--spacing-5);
+  border-radius: var(--radius-lg);
+  font-size: var(--font-size-base);
+  font-family: var(--font-base);
+  font-weight: 500;
+  box-shadow: var(--shadow-lg);
+  z-index: 2000;
+  opacity: 0;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  white-space: nowrap;
+}
+.ckn-toast--visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+.ckn-toast--success { background: var(--color-success-light); color: var(--color-success); }
+.ckn-toast--error { background: var(--color-danger-light); color: var(--color-danger); }
+.ckn-toast--info { background: var(--brand-100); color: var(--brand-900); }
+
+/* ──────────────────────────────────────────────
+   15. EXPORT MODAL
+────────────────────────────────────────────── */
+.ckn-export-info {
+  display: flex;
+  gap: var(--spacing-6);
+  padding: var(--spacing-4);
+  background: var(--brand-100);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-4);
+  flex-wrap: wrap;
+}
+
+.ckn-export-info__item {
+  font-size: var(--font-size-sm);
+  color: var(--brand-900);
+}
+
+.ckn-export-instructions {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  margin-bottom: var(--spacing-3);
+  line-height: 1.5;
+}
+
+.ckn-export-instructions code {
+  background: var(--ink-200);
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  color: var(--color-text);
+}
+
+.ckn-export-textarea {
+  width: 100%;
+  height: 340px;
+  font-family: 'Consolas', 'Courier New', monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--ink-800);
+  background: var(--ink-50);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-3);
+  resize: vertical;
+  outline: none;
+}
+
+/* ──────────────────────────────────────────────
+   16. OVERLAY (mobile)
+────────────────────────────────────────────── */
+.ckn-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.35);
+  z-index: 90;
+}
+.ckn-overlay.is-active { display: block; }
+
+/* ──────────────────────────────────────────────
+   17. HELPERS
+────────────────────────────────────────────── */
+.show-mobile { display: none; }
+.hide-mobile { display: inline; }
+
+/* ──────────────────────────────────────────────
+   18. RESPONSIVE — TABLET
+────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .ckn-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ckn-detail-aside {
+    order: -1;
+  }
+}
+
+/* ──────────────────────────────────────────────
+   19. RESPONSIVE — MOBILE
+────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .ckn-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    transform: translateX(-100%);
+    z-index: 200;
+  }
+
+  .ckn-sidebar.is-open {
+    transform: translateX(0);
+  }
+
+  .ckn-topbar__menu-btn {
+    display: flex;
+  }
+
+  #ckn-content {
+    padding: var(--spacing-5) var(--spacing-4);
+  }
+
+  .ckn-card-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ckn-form-row--2 {
+    grid-template-columns: 1fr;
+  }
+
+  .ckn-page__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .ckn-detail-header__title {
+    font-size: var(--font-size-xl);
+  }
+
+  .ckn-detail-page__nav {
+    flex-wrap: wrap;
+  }
+
+  .ckn-detail-page__admin-actions {
+    flex-wrap: wrap;
+  }
+
+  .ckn-modal__container {
+    max-height: calc(100vh - 32px);
+  }
+
+  .ckn-modal {
+    padding: var(--spacing-4) var(--spacing-2);
+    align-items: flex-end;
+  }
+
+  .ckn-modal__container {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 90vh;
+  }
+
+  .show-mobile { display: inline; }
+  .hide-mobile { display: none; }
+
+  .ckn-export-info {
+    flex-direction: column;
+    gap: var(--spacing-2);
+  }
+
+  .ckn-topbar {
+    padding: 0 var(--spacing-4);
+  }
+
+  .ckn-topbar__title {
+    font-size: var(--font-size-base);
+  }
+
+  .ckn-page__title {
+    font-size: var(--font-size-xl);
+  }
+}
+
+/* ============================================================
+   NORMA DETAIL — Design refinado (nd-*)
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   Breadcrumb / Navegação contextual
+────────────────────────────────────────────── */
+.nd-nav {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-6);
+  flex-wrap: wrap;
+}
+
+.nd-nav__sep {
+  color: var(--ink-400);
+  font-size: 10px;
+}
+
+.nd-nav__current {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────
+   Hero da norma
+────────────────────────────────────────────── */
+.nd-hero {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing-6);
+  padding: var(--spacing-8);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  margin-bottom: var(--spacing-6);
+  border-left: 4px solid var(--color-primary);
+}
+
+.nd-hero__left {
+  flex: 1;
+  min-width: 0;
+}
+
+.nd-hero__code-wrapper {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  margin-bottom: var(--spacing-3);
+}
+
+.nd-hero__icon {
+  width: 32px;
+  height: 32px;
+  background: var(--brand-100);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 14px;
+  flex-shrink: 0;
+}
+
+.nd-hero__code {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 14px;
+  background: var(--brand-100);
+  color: var(--brand-900);
+  border: 1px solid var(--brand-300);
+  border-radius: 100px;
+  font-size: var(--font-size-sm);
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.nd-hero__title {
+  font-size: var(--font-size-3xl);
+  font-weight: 700;
+  color: var(--color-text);
+  line-height: 1.2;
+  margin-bottom: var(--spacing-3);
+}
+
+.nd-hero__summary {
+  font-size: var(--font-size-base);
+  color: var(--color-text-secondary);
+  line-height: 1.6;
+  max-width: 680px;
+}
+
+.nd-hero__actions {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+/* Botão danger outline */
+.ckn-btn--danger-outline {
+  background: transparent;
+  color: var(--color-danger);
+  border-color: var(--color-danger);
+}
+.ckn-btn--danger-outline:hover {
+  background: var(--color-danger-light);
+  text-decoration: none;
+  color: var(--color-danger);
+}
+
+/* ──────────────────────────────────────────────
+   Body layout
+────────────────────────────────────────────── */
+.nd-body {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--spacing-6);
+  align-items: start;
+}
+
+/* ──────────────────────────────────────────────
+   Seções principais
+────────────────────────────────────────────── */
+.nd-section {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+  margin-bottom: var(--spacing-4);
+}
+.nd-section:last-child { margin-bottom: 0; }
+
+.nd-section__title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.nd-section__text {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  line-height: 1.65;
+}
+
+.nd-empty {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+  padding: var(--spacing-2) 0;
+}
+
+/* ──────────────────────────────────────────────
+   Documentos
+────────────────────────────────────────────── */
+.nd-docs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.nd-doc-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--ink-50);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  transition: background var(--transition), border-color var(--transition);
+}
+.nd-doc-card:hover { background: var(--brand-100); border-color: var(--brand-300); }
+
+.nd-doc-card__icon {
+  width: 36px;
+  height: 36px;
+  background: var(--brand-100);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+  font-size: 16px;
+  flex-shrink: 0;
+}
+
+.nd-doc-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.nd-doc-card__name {
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  color: var(--color-text);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nd-doc-card__link {
+  font-size: var(--font-size-sm);
+  color: var(--color-primary);
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+}
+.nd-doc-card__link:hover { text-decoration: underline; }
+
+.nd-doc-card__no-link {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-style: italic;
+}
+
+/* ──────────────────────────────────────────────
+   Processos relacionados
+────────────────────────────────────────────── */
+.nd-process-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.nd-process-card {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+  padding: var(--spacing-4);
+  background: var(--ink-50);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  text-align: left;
+  font-family: var(--font-base);
+  width: 100%;
+  transition: background var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+.nd-process-card:hover {
+  background: var(--brand-100);
+  border-color: var(--brand-400);
+  box-shadow: var(--shadow-sm);
+}
+
+.nd-process-card__icon {
+  width: 36px;
+  height: 36px;
+  background: var(--brand-200);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--brand-800);
+  font-size: 15px;
+  flex-shrink: 0;
+}
+
+.nd-process-card__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
+.nd-process-card__name {
+  font-size: var(--font-size-base);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.nd-process-card__obj {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.nd-process-card__arrow {
+  color: var(--color-text-tertiary);
+  font-size: 12px;
+  flex-shrink: 0;
+}
+
+/* ──────────────────────────────────────────────
+   Aside cards
+────────────────────────────────────────────── */
+.nd-aside {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+.nd-aside-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-5);
+}
+
+.nd-aside-card__title {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-text-tertiary);
+  margin-bottom: var(--spacing-4);
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-2);
+  padding-bottom: var(--spacing-3);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+/* Ficha técnica */
+.nd-meta-list {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--spacing-2) var(--spacing-4);
+  align-items: center;
+}
+
+.nd-meta-list dt {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-tertiary);
+  font-weight: 500;
+}
+
+.nd-meta-list dd {
+  font-size: var(--font-size-sm);
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+/* ──────────────────────────────────────────────
+   Timeline de histórico
+────────────────────────────────────────────── */
+.nd-timeline {
+  position: relative;
+  padding-left: var(--spacing-5);
+}
+
+.nd-timeline::before {
+  content: "";
+  position: absolute;
+  left: 7px;
+  top: 6px;
+  bottom: 6px;
+  width: 2px;
+  background: var(--color-border);
+}
+
+.nd-timeline__item {
+  position: relative;
+  padding-bottom: var(--spacing-4);
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nd-timeline__item:last-child { padding-bottom: 0; }
+
+.nd-timeline__dot {
+  position: absolute;
+  left: calc(-1 * var(--spacing-5) + 1px);
+  top: 5px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--ink-300);
+  border: 2px solid var(--color-surface);
+  box-shadow: 0 0 0 1px var(--color-border);
+}
+
+.nd-timeline__item--latest .nd-timeline__dot {
+  background: var(--color-primary);
+  box-shadow: 0 0 0 1px var(--brand-400);
+}
+
+.nd-timeline__date {
+  font-size: var(--font-size-xs);
+  font-weight: 700;
+  color: var(--color-primary);
+  letter-spacing: 0.02em;
+}
+
+.nd-timeline__item--latest .nd-timeline__date {
+  color: var(--color-primary);
+}
+
+.nd-timeline__desc {
+  font-size: var(--font-size-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+/* ──────────────────────────────────────────────
+   Responsividade — Detail page
+────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .nd-body {
+    grid-template-columns: 1fr;
+  }
+  .nd-aside {
+    order: -1;
+  }
+  .nd-hero {
+    flex-direction: column;
+    gap: var(--spacing-4);
+  }
+  .nd-hero__title {
+    font-size: var(--font-size-2xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .nd-hero {
+    padding: var(--spacing-5);
+    border-left-width: 3px;
+  }
+  .nd-hero__title {
+    font-size: var(--font-size-xl);
+  }
+  .nd-body {
+    gap: var(--spacing-4);
+  }
+  .nd-section, .nd-aside-card {
+    padding: var(--spacing-4);
+  }
+  .nd-nav {
+    margin-bottom: var(--spacing-4);
+  }
+}
+
+  </style>
+</head>
+<body>
+
+  <div class="ckn-shell">
+
+    <!-- Sidebar -->
+    <aside class="ckn-sidebar" id="ckn-sidebar">
+      <!-- Renderizado por CKN_Layout -->
+    </aside>
+
+    <!-- Overlay mobile -->
+    <div class="ckn-overlay" id="ckn-overlay"></div>
+
+    <!-- Main -->
+    <div class="ckn-main">
+
+      <!-- Topbar -->
+      <div class="ckn-topbar" id="ckn-topbar">
+        <!-- Renderizado por CKN_Layout -->
+      </div>
+
+      <!-- Content -->
+      <main id="ckn-content">
+        <!-- Renderizado pelo roteador -->
+      </main>
+
+    </div>
+  </div>
+
+  <!--
+    ============================================================
+    SCRIPTS
+    REGRA FUNDAMENTAL DA PÁGINA PÚBLICA:
+    - Carregar SOMENTE data.js, common.js, layout.js, páginas e app.js.
+    - NÃO carregar store.js (store é exclusivo da página admin).
+    - A interface deriva EXCLUSIVAMENTE de CKN_DATA.
+    - Substituir o conteúdo de js/data.js para publicar atualizações.
+    ============================================================
+  -->
+  <script src="js/data.js"></script>
+  <!--
+    NÃO incluir store.js aqui.
+    A página pública não usa localStorage.
+    Toda a renderização vem de CKN_DATA acima.
+  -->
+  <script name="js/components/common.js">
+    /**
+ * Utilitários e componentes comuns reutilizáveis.
+ */
+const CKN_Common = (() => {
+
+  /**
+   * Gera um ID único com prefixo.
+   * Ex: generateId("norma") → "norma-a3f8b2c1"
+   */
+  function generateId(prefix) {
+    return `${prefix}-${Math.random().toString(36).substr(2, 8)}`;
+  }
+
+  /**
+   * Formata data ISO para exibição.
+   * "2026-09-25" → "25/09/2026"
+   */
+  function formatDate(isoDate) {
+    if (!isoDate) return "";
+    const parts = isoDate.split("-");
+    if (parts.length === 3) return `${parts[2]}/${parts[1]}/${parts[0]}`;
+    return isoDate;
+  }
+
+  /**
+   * Trunca texto com reticências.
+   */
+  function truncate(text, maxLength) {
+    if (!text) return "";
+    if (text.length <= maxLength) return text;
+    return text.substring(0, maxLength).trim() + "…";
+  }
+
+  /**
+   * Escapa HTML para evitar XSS em renderizações dinâmicas.
+   */
+  function escapeHtml(str) {
+    if (!str) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#039;");
+  }
+
+  /**
+   * Exibe um toast/notification temporário.
+   * type: "success" | "error" | "info"
+   */
+  function showToast(message, type = "success") {
+    const existing = document.getElementById("ckn-toast");
+    if (existing) existing.remove();
+
+    const icons = {
+      success: "fa-circle-check",
+      error: "fa-circle-xmark",
+      info: "fa-circle-info"
+    };
+
+    const toast = document.createElement("div");
+    toast.id = "ckn-toast";
+    toast.className = `ckn-toast ckn-toast--${type}`;
+    toast.innerHTML = `<i class="fa-solid ${icons[type] || icons.info}"></i><span>${escapeHtml(message)}</span>`;
+    document.body.appendChild(toast);
+
+    // Forçar reflow para animação
+    requestAnimationFrame(() => toast.classList.add("ckn-toast--visible"));
+
+    setTimeout(() => {
+      toast.classList.remove("ckn-toast--visible");
+      setTimeout(() => toast.remove(), 300);
+    }, 3000);
+  }
+
+  /**
+   * Abre um modal pelo ID.
+   */
+  function openModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.add("is-open");
+      document.body.classList.add("modal-open");
+      // foco no primeiro campo
+      setTimeout(() => {
+        const firstInput = modal.querySelector("input, textarea, select");
+        if (firstInput) firstInput.focus();
+      }, 100);
+    }
+  }
+
+  /**
+   * Fecha um modal pelo ID.
+   */
+  function closeModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+      modal.classList.remove("is-open");
+      document.body.classList.remove("modal-open");
+    }
+  }
+
+  /**
+   * Fecha todos os modais abertos.
+   */
+  function closeAllModals() {
+    document.querySelectorAll(".ckn-modal.is-open").forEach(m => {
+      m.classList.remove("is-open");
+    });
+    document.body.classList.remove("modal-open");
+  }
+
+  /**
+   * Modal de confirmação simples.
+   * Retorna Promise<boolean>.
+   */
+  function confirm(message) {
+    return new Promise(resolve => {
+      const existing = document.getElementById("ckn-confirm-modal");
+      if (existing) existing.remove();
+
+      const modal = document.createElement("div");
+      modal.id = "ckn-confirm-modal";
+      modal.className = "ckn-modal is-open";
+      modal.innerHTML = `
+        <div class="ckn-modal__backdrop"></div>
+        <div class="ckn-modal__container ckn-modal__container--sm">
+          <div class="ckn-modal__header">
+            <h3 class="ckn-modal__title"><i class="fa-solid fa-triangle-exclamation"></i> Confirmar ação</h3>
+          </div>
+          <div class="ckn-modal__body">
+            <p>${escapeHtml(message)}</p>
+          </div>
+          <div class="ckn-modal__footer">
+            <button type="button" class="ckn-btn ckn-btn--ghost" id="ckn-confirm-cancel">Cancelar</button>
+            <button type="button" class="ckn-btn ckn-btn--danger" id="ckn-confirm-ok">Excluir</button>
+          </div>
+        </div>
+      `;
+      document.body.appendChild(modal);
+      document.body.classList.add("modal-open");
+
+      modal.querySelector("#ckn-confirm-cancel").addEventListener("click", () => {
+        modal.remove();
+        document.body.classList.remove("modal-open");
+        resolve(false);
+      });
+      modal.querySelector("#ckn-confirm-ok").addEventListener("click", () => {
+        modal.remove();
+        document.body.classList.remove("modal-open");
+        resolve(true);
+      });
+      modal.querySelector(".ckn-modal__backdrop").addEventListener("click", () => {
+        modal.remove();
+        document.body.classList.remove("modal-open");
+        resolve(false);
+      });
+    });
+  }
+
+  /**
+   * Renderiza estado vazio padronizado.
+   */
+  function emptyState(icon, title, subtitle) {
+    return `
+      <div class="ckn-empty-state">
+        <div class="ckn-empty-state__icon"><i class="fa-regular ${icon}"></i></div>
+        <div class="ckn-empty-state__title">${escapeHtml(title)}</div>
+        ${subtitle ? `<div class="ckn-empty-state__subtitle">${escapeHtml(subtitle)}</div>` : ""}
+      </div>
+    `;
+  }
+
+  /**
+   * Filtra lista por termo de busca nos campos especificados.
+   */
+  function filterByTerm(list, term, fields) {
+    if (!term || !term.trim()) return list;
+    const t = term.trim().toLowerCase();
+    return list.filter(item =>
+      fields.some(f => {
+        const val = item[f];
+        return val && String(val).toLowerCase().includes(t);
+      })
+    );
+  }
+
+  return {
+    generateId,
+    formatDate,
+    truncate,
+    escapeHtml,
+    showToast,
+    openModal,
+    closeModal,
+    closeAllModals,
+    confirm,
+    emptyState,
+    filterByTerm
+  };
+})();
+
+  </script>
+  <script name="js/components/layout.js">
+/**
+ * CKN_Layout — Gerencia a estrutura visual (sidebar, topbar, navegação).
+ * Compartilhado entre admin e página pública, com variações de modo.
+ */
+const CKN_Layout = (() => {
+
+  let _currentPage = null;
+  let _onNavigate = null;
+  let _isAdmin = false;
+
+  /**
+   * Inicializa o layout.
+   * @param {Object} opts
+   * @param {boolean} opts.isAdmin — true na página administrativa
+   * @param {Function} opts.onNavigate — callback de navegação (route)
+   */
+  function init(opts = {}) {
+    _isAdmin = opts.isAdmin || false;
+    _onNavigate = opts.onNavigate || (() => {});
+    _renderSidebar();
+    _renderTopbar();
+    _bindEvents();
+  }
+
+  function _renderSidebar() {
+    const sidebar = document.getElementById("ckn-sidebar");
+    if (!sidebar) return;
+
+    sidebar.innerHTML = `
+      <div class="ckn-sidebar__brand">
+        <div class="ckn-sidebar__brand-icon">
+          <i class="fa-solid fa-book-bookmark"></i>
+        </div>
+        <div class="ckn-sidebar__brand-text">
+          <span class="ckn-sidebar__brand-title">Centro de Conhecimento</span>
+          <span class="ckn-sidebar__brand-subtitle">${_isAdmin ? "Administração" : "Consulta"}</span>
+        </div>
+      </div>
+      <nav class="ckn-sidebar__nav">
+        <ul class="ckn-sidebar__nav-list">
+          <li class="ckn-sidebar__nav-item" data-route="normas">
+            <a href="#/normas" class="ckn-sidebar__nav-link" data-route="normas">
+              <i class="fa-solid fa-book-bookmark ckn-sidebar__nav-icon"></i>
+              <span>Normas Aplicáveis</span>
+            </a>
+          </li>
+          <li class="ckn-sidebar__nav-item" data-route="processos">
+            <a href="#/processos" class="ckn-sidebar__nav-link" data-route="processos">
+              <i class="fa-solid fa-diagram-project ckn-sidebar__nav-icon"></i>
+              <span>Processos</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+    `;
+  }
+
+  function _renderTopbar() {
+    const topbar = document.getElementById("ckn-topbar");
+    if (!topbar) return;
+
+    const exportBtn = _isAdmin ? `
+      <button type="button" class="ckn-btn ckn-btn--primary" id="btn-export-data">
+        <i class="fa-solid fa-cloud-arrow-up"></i>
+        <span class="hide-mobile">Gerar DATA para publicação</span>
+        <span class="show-mobile">DATA</span>
+      </button>
+    ` : "";
+
+    topbar.innerHTML = `
+      <button type="button" class="ckn-topbar__menu-btn" id="btn-toggle-sidebar" aria-label="Menu">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <h1 class="ckn-topbar__title" id="ckn-page-title">Centro de Conhecimento Normativo</h1>
+      <div class="ckn-topbar__actions">
+        ${exportBtn}
+      </div>
+    `;
+  }
+
+  function _bindEvents() {
+    // Toggle sidebar mobile
+    document.addEventListener("click", e => {
+      const btn = e.target.closest("#btn-toggle-sidebar");
+      if (btn) {
+        document.getElementById("ckn-sidebar").classList.toggle("is-open");
+        document.getElementById("ckn-overlay").classList.toggle("is-active");
+      }
+    });
+
+    // Fechar sidebar ao clicar no overlay
+    const overlay = document.getElementById("ckn-overlay");
+    if (overlay) {
+      overlay.addEventListener("click", () => {
+        document.getElementById("ckn-sidebar").classList.remove("is-open");
+        overlay.classList.remove("is-active");
+      });
+    }
+
+    // Navegação sidebar
+    document.addEventListener("click", e => {
+      const link = e.target.closest(".ckn-sidebar__nav-link");
+      if (link) {
+        // No mobile, fechar sidebar ao navegar
+        document.getElementById("ckn-sidebar").classList.remove("is-open");
+        const ov = document.getElementById("ckn-overlay");
+        if (ov) ov.classList.remove("is-active");
+      }
+    });
+
+    // Botão exportar
+    document.addEventListener("click", e => {
+      if (e.target.closest("#btn-export-data")) {
+        _handleExport();
+      }
+    });
+
+    // Hash routing
+    window.addEventListener("hashchange", _handleRoute);
+  }
+
+  function _handleRoute() {
+    const hash = window.location.hash || "#/normas";
+    let route = hash.replace("#/", "").split("?")[0];
+    if (!route) route = "normas";
+
+    setActivePage(route);
+    if (_onNavigate) _onNavigate(hash);
+  }
+
+  function _handleExport() {
+    if (typeof CKN_STORE === "undefined") return;
+
+    const data = CKN_STORE.exportData();
+    const json = JSON.stringify(data, null, 2)
+      .replace(/"([^"]+)":/g, '$1:') // remover aspas das chaves para parecer JS
+      .replace(/"/g, '"');
+
+    const content = `/**\n * CKN_DATA — Exportado em ${data.updatedAt}\n * Versão: ${data.version}\n * Gerado pela página administrativa do Centro de Conhecimento Normativo.\n * Substitua o conteúdo do arquivo js/data.js por este conteúdo.\n */\nconst CKN_DATA = ${JSON.stringify(data, null, 2)};`;
+
+    _showExportModal(content, data);
+  }
+
+  function _showExportModal(content, data) {
+    const existing = document.getElementById("ckn-export-modal");
+    if (existing) existing.remove();
+
+    const modal = document.createElement("div");
+    modal.id = "ckn-export-modal";
+    modal.className = "ckn-modal is-open";
+    modal.innerHTML = `
+      <div class="ckn-modal__backdrop"></div>
+      <div class="ckn-modal__container ckn-modal__container--lg">
+        <div class="ckn-modal__header">
+          <h3 class="ckn-modal__title">
+            <i class="fa-solid fa-cloud-arrow-up"></i> Gerar DATA para publicação
+          </h3>
+          <button type="button" class="ckn-modal__close" id="btn-close-export">
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <div class="ckn-modal__body">
+          <div class="ckn-export-info">
+            <div class="ckn-export-info__item">
+              <strong>Versão:</strong> ${CKN_Common.escapeHtml(data.version)}
+            </div>
+            <div class="ckn-export-info__item">
+              <strong>Normas:</strong> ${data.normas.length} registros
+            </div>
+            <div class="ckn-export-info__item">
+              <strong>Processos:</strong> ${data.processos.length} registros
+            </div>
+          </div>
+          <p class="ckn-export-instructions">
+            Copie o conteúdo abaixo e substitua o arquivo <code>js/data.js</code> na página do usuário final.
+          </p>
+          <textarea class="ckn-export-textarea" id="export-content" readonly>${content}</textarea>
+        </div>
+        <div class="ckn-modal__footer">
+          <button type="button" class="ckn-btn ckn-btn--ghost" id="btn-close-export-2">Fechar</button>
+          <button type="button" class="ckn-btn ckn-btn--primary" id="btn-copy-export">
+            <i class="fa-solid fa-copy"></i> Copiar conteúdo
+          </button>
+        </div>
+      </div>
+    `;
+    document.body.appendChild(modal);
+    document.body.classList.add("modal-open");
+
+    modal.querySelector("#btn-close-export").addEventListener("click", () => {
+      modal.remove();
+      document.body.classList.remove("modal-open");
+    });
+    modal.querySelector("#btn-close-export-2").addEventListener("click", () => {
+      modal.remove();
+      document.body.classList.remove("modal-open");
+    });
+    modal.querySelector(".ckn-modal__backdrop").addEventListener("click", () => {
+      modal.remove();
+      document.body.classList.remove("modal-open");
+    });
+    modal.querySelector("#btn-copy-export").addEventListener("click", () => {
+      const ta = modal.querySelector("#export-content");
+      ta.select();
+      ta.setSelectionRange(0, 99999);
+      navigator.clipboard.writeText(ta.value).then(() => {
+        CKN_Common.showToast("Conteúdo copiado para a área de transferência!");
+      }).catch(() => {
+        document.execCommand("copy");
+        CKN_Common.showToast("Conteúdo copiado!");
+      });
+    });
+  }
+
+  function setActivePage(route) {
+    _currentPage = route;
+    // Atualizar nav items
+    document.querySelectorAll(".ckn-sidebar__nav-item").forEach(item => {
+      const itemRoute = item.getAttribute("data-route");
+      item.classList.toggle("is-active", itemRoute === route);
+    });
+  }
+
+  function setPageTitle(title) {
+    const el = document.getElementById("ckn-page-title");
+    if (el) el.textContent = title;
+  }
+
+  function navigate(route) {
+    window.location.hash = `#/${route}`;
+  }
+
+  function getCurrentHash() {
+    return window.location.hash || "#/normas";
+  }
+
+  return {
+    init,
+    setActivePage,
+    setPageTitle,
+    navigate,
+    getCurrentHash
+  };
+})();
+
+  </script>
+  <script name="js/pages/Normas.js">
+/**
+ * Página de Normas — Admin e Pública.
+ *
+ * CORREÇÃO DO BUG DE DUPLICAÇÃO:
+ * O problema era que _bindEvents() era chamado a cada init(), acumulando
+ * múltiplos event listeners no elemento #ckn-content (que não é destruído
+ * entre navegações). Ao clicar em "Salvar Norma", os N listeners acumulados
+ * chamavam _saveForm() N vezes, criando N cópias do registro.
+ *
+ * Solução: os listeners são registrados uma única vez via _initEvents(),
+ * controlado pela flag _eventsRegistered. O init() subsequente apenas
+ * atualiza o estado e re-renderiza, sem registrar novos listeners.
+ */
+const CKN_PageNormas = (() => {
+
+  let _isAdmin = false;
+  let _searchTerm = "";
+  let _normaForm = {};
+  let _editingId = null;
+  let _docsTemp = [];
+  let _histTemp = [];
+  let _onNavigate = null;
+  let _eventsRegistered = false; // ← FLAG: garante registro único de listeners
+
+  function init(opts = {}) {
+    _isAdmin = opts.isAdmin || false;
+    _onNavigate = opts.onNavigate || (() => {});
+    render();
+    // Registrar listeners apenas na primeira vez
+    if (!_eventsRegistered) {
+      _bindEvents();
+      _eventsRegistered = true;
+    }
+  }
+
+  // ──────────────────────────────────────────────
+  // FONTE DE DADOS
+  // ──────────────────────────────────────────────
+
+  function _getNormas() {
+    if (_isAdmin) return CKN_STORE.getNormas();
+    return CKN_DATA.normas || [];
+  }
+
+  // ──────────────────────────────────────────────
+  // RENDER
+  // ──────────────────────────────────────────────
+
+  function render() {
+    CKN_Layout.setActivePage("normas");
+    CKN_Layout.setPageTitle("Normas Aplicáveis");
+
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    content.innerHTML = `
+      <div class="ckn-page">
+        <div class="ckn-page__header">
+          <div>
+            <h2 class="ckn-page__title">Normas Aplicáveis</h2>
+            <p class="ckn-page__subtitle">Consulte as normas vigentes e suas aplicações.</p>
+          </div>
+          ${_isAdmin ? `
+          <button type="button" class="ckn-btn ckn-btn--primary" id="btn-nova-norma">
+            <i class="fa-solid fa-plus"></i> Nova Norma
+          </button>` : ""}
+        </div>
+
+        <div class="ckn-toolbar">
+          <div class="ckn-search">
+            <i class="fa-solid fa-magnifying-glass ckn-search__icon"></i>
+            <input
+              type="text"
+              class="ckn-search__input"
+              id="normas-search"
+              placeholder="Buscar por código, nome ou descrição…"
+              value="${CKN_Common.escapeHtml(_searchTerm)}"
+              autocomplete="off"
+            />
+            ${_searchTerm ? `<button type="button" class="ckn-search__clear" id="btn-clear-search"><i class="fa-solid fa-xmark"></i></button>` : ""}
+          </div>
+        </div>
+
+        <div id="normas-list" class="ckn-card-grid"></div>
+      </div>
+
+      ${_isAdmin ? _renderModal() : ""}
+    `;
+
+    _renderList();
+  }
+
+  function _renderList() {
+    const container = document.getElementById("normas-list");
+    if (!container) return;
+
+    const allNormas = _getNormas();
+    console.log(`[Normas] Renderizando ${allNormas.length} normas da fonte ${_isAdmin ? "CKN_STORE" : "CKN_DATA"}.`);
+
+    const normas = CKN_Common.filterByTerm(allNormas, _searchTerm, ["codigo", "nome", "descricao", "aplicacao"]);
+
+    if (normas.length === 0) {
+      container.innerHTML = _searchTerm
+        ? CKN_Common.emptyState("fa-file-circle-question", "Nenhuma norma encontrada", `Nenhum resultado para "${_searchTerm}".`)
+        : CKN_Common.emptyState("fa-file-lines", "Nenhuma norma cadastrada", _isAdmin ? 'Clique em "Nova Norma" para começar.' : "Não há normas cadastradas no momento.");
+      return;
+    }
+
+    container.innerHTML = normas.map(n => _renderCard(n)).join("");
+  }
+
+  function _renderCard(norma) {
+    const docsCount = (norma.documentos || []).length;
+    const histCount = (norma.historico || []).length;
+
+    return `
+      <div class="ckn-card" data-id="${CKN_Common.escapeHtml(norma.id)}">
+        <div class="ckn-card__header">
+          <span class="ckn-badge">${CKN_Common.escapeHtml(norma.codigo)}</span>
+          ${_isAdmin ? `
+          <div class="ckn-card__actions">
+            <button type="button" class="ckn-icon-btn" title="Editar" data-action="edit" data-id="${CKN_Common.escapeHtml(norma.id)}">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" title="Excluir" data-action="delete" data-id="${CKN_Common.escapeHtml(norma.id)}">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>` : ""}
+        </div>
+        <div class="ckn-card__body">
+          <h3 class="ckn-card__title">${CKN_Common.escapeHtml(norma.nome)}</h3>
+          ${norma.descricao ? `<p class="ckn-card__desc">${CKN_Common.escapeHtml(CKN_Common.truncate(norma.descricao, 150))}</p>` : ""}
+          ${norma.aplicacao ? `<p class="ckn-card__meta"><i class="fa-solid fa-circle-dot"></i> ${CKN_Common.escapeHtml(CKN_Common.truncate(norma.aplicacao, 100))}</p>` : ""}
+        </div>
+        <div class="ckn-card__footer">
+          <div class="ckn-card__stats">
+            ${docsCount > 0 ? `<span class="ckn-card__stat"><i class="fa-regular fa-file"></i> ${docsCount} ${docsCount === 1 ? "documento" : "documentos"}</span>` : ""}
+            ${histCount > 0 ? `<span class="ckn-card__stat"><i class="fa-regular fa-clock"></i> ${histCount} ${histCount === 1 ? "revisão" : "revisões"}</span>` : ""}
+          </div>
+          <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" data-action="detail" data-id="${CKN_Common.escapeHtml(norma.id)}">
+            Ver detalhes <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ──────────────────────────────────────────────
+  // MODAL
+  // ──────────────────────────────────────────────
+
+  function _renderModal() {
+    return `
+      <div class="ckn-modal" id="modal-norma">
+        <div class="ckn-modal__backdrop" data-close-modal="modal-norma"></div>
+        <div class="ckn-modal__container ckn-modal__container--lg">
+          <div class="ckn-modal__header">
+            <h3 class="ckn-modal__title" id="modal-norma-title">Nova Norma</h3>
+            <button type="button" class="ckn-modal__close" data-close-modal="modal-norma">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <form class="ckn-modal__body" id="form-norma" novalidate>
+            <div class="ckn-form-row ckn-form-row--2">
+              <div class="ckn-form-group">
+                <label class="ckn-label" for="field-codigo">Código <span class="required">*</span></label>
+                <input type="text" class="ckn-input" id="field-codigo" data-field="codigo" placeholder="Ex: NR-10" autocomplete="off" />
+              </div>
+              <div class="ckn-form-group">
+                <label class="ckn-label" for="field-nome">Nome <span class="required">*</span></label>
+                <input type="text" class="ckn-input" id="field-nome" data-field="nome" placeholder="Ex: Segurança em Instalações Elétricas" autocomplete="off" />
+              </div>
+            </div>
+            <div class="ckn-form-group">
+              <label class="ckn-label" for="field-descricao">Descrição</label>
+              <textarea class="ckn-input ckn-textarea" id="field-descricao" data-field="descricao" placeholder="Do que trata esta norma?" rows="3"></textarea>
+            </div>
+            <div class="ckn-form-group">
+              <label class="ckn-label" for="field-aplicacao">Aplicação</label>
+              <textarea class="ckn-input ckn-textarea" id="field-aplicacao" data-field="aplicacao" placeholder="Ex: Aplica-se a todas as unidades operacionais…" rows="2"></textarea>
+            </div>
+
+            <!-- Documentos -->
+            <div class="ckn-form-section">
+              <div class="ckn-form-section__header">
+                <span class="ckn-form-section__title"><i class="fa-regular fa-file"></i> Documentos</span>
+                <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" id="btn-add-doc">
+                  <i class="fa-solid fa-plus"></i> Adicionar documento
+                </button>
+              </div>
+              <div id="docs-list"></div>
+            </div>
+
+            <!-- Histórico -->
+            <div class="ckn-form-section">
+              <div class="ckn-form-section__header">
+                <span class="ckn-form-section__title"><i class="fa-regular fa-clock"></i> Histórico de Alterações</span>
+                <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" id="btn-add-hist">
+                  <i class="fa-solid fa-plus"></i> Adicionar registro de histórico
+                </button>
+              </div>
+              <div id="hist-list"></div>
+            </div>
+          </form>
+          <div class="ckn-modal__footer">
+            <button type="button" class="ckn-btn ckn-btn--ghost" data-close-modal="modal-norma">Cancelar</button>
+            <button type="button" class="ckn-btn ckn-btn--primary" id="btn-salvar-norma">
+              <i class="fa-solid fa-floppy-disk"></i> Salvar Norma
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function _renderDocsList() {
+    const container = document.getElementById("docs-list");
+    if (!container) return;
+    if (_docsTemp.length === 0) {
+      container.innerHTML = `<p class="ckn-form-empty">Nenhum documento adicionado.</p>`;
+      return;
+    }
+    container.innerHTML = _docsTemp.map((doc, i) => `
+      <div class="ckn-subitem" data-doc-index="${i}">
+        <div class="ckn-subitem__fields">
+          <input type="text" class="ckn-input" placeholder="Nome do documento" value="${CKN_Common.escapeHtml(doc.nome)}" data-doc-field="nome" data-doc-index="${i}" />
+          <input type="text" class="ckn-input" placeholder="Link (opcional)" value="${CKN_Common.escapeHtml(doc.link || "")}" data-doc-field="link" data-doc-index="${i}" />
+        </div>
+        <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" data-doc-remove="${i}" title="Remover">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join("");
+  }
+
+  function _renderHistList() {
+    const container = document.getElementById("hist-list");
+    if (!container) return;
+    if (_histTemp.length === 0) {
+      container.innerHTML = `<p class="ckn-form-empty">Nenhum registro de histórico adicionado.</p>`;
+      return;
+    }
+    container.innerHTML = _histTemp.map((h, i) => `
+      <div class="ckn-subitem" data-hist-index="${i}">
+        <div class="ckn-subitem__fields">
+          <input type="date" class="ckn-input ckn-input--date" value="${CKN_Common.escapeHtml(h.data || "")}" data-hist-field="data" data-hist-index="${i}" />
+          <input type="text" class="ckn-input" placeholder="O que mudou nesta revisão?" value="${CKN_Common.escapeHtml(h.alteracao || "")}" data-hist-field="alteracao" data-hist-index="${i}" />
+        </div>
+        <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" data-hist-remove="${i}" title="Remover">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join("");
+  }
+
+  // ──────────────────────────────────────────────
+  // FORM
+  // ──────────────────────────────────────────────
+
+  function _openForm(norma = null) {
+    _editingId = norma ? norma.id : null;
+    _normaForm = norma
+      ? { ...norma }
+      : { codigo: "", nome: "", descricao: "", aplicacao: "" };
+
+    _docsTemp = norma ? JSON.parse(JSON.stringify(norma.documentos || [])) : [];
+    _histTemp = norma ? JSON.parse(JSON.stringify(norma.historico || [])) : [];
+
+    const title = document.getElementById("modal-norma-title");
+    if (title) title.textContent = norma ? "Editar Norma" : "Nova Norma";
+
+    const fields = ["codigo", "nome", "descricao", "aplicacao"];
+    fields.forEach(f => {
+      const el = document.querySelector(`[data-field="${f}"]`);
+      if (el) el.value = _normaForm[f] || "";
+    });
+
+    _renderDocsList();
+    _renderHistList();
+    CKN_Common.openModal("modal-norma");
+  }
+
+  function _saveForm() {
+    // Proteção contra duplo clique: desabilitar botão imediatamente
+    const saveBtn = document.getElementById("btn-salvar-norma");
+    if (saveBtn) {
+      if (saveBtn.disabled) return; // já está processando, ignorar
+      saveBtn.disabled = true;
+    }
+
+    const reEnableBtn = () => {
+      if (saveBtn) saveBtn.disabled = false;
+    };
+
+    // Ler campos do form
+    const fields = ["codigo", "nome", "descricao", "aplicacao"];
+    fields.forEach(f => {
+      const el = document.querySelector(`[data-field="${f}"]`);
+      if (el) _normaForm[f] = el.value.trim();
+    });
+
+    // Validação
+    if (!_normaForm.codigo) {
+      CKN_Common.showToast("O campo Código é obrigatório.", "error");
+      const el = document.getElementById("field-codigo");
+      if (el) el.focus();
+      reEnableBtn();
+      return;
+    }
+    if (!_normaForm.nome) {
+      CKN_Common.showToast("O campo Nome é obrigatório.", "error");
+      const el = document.getElementById("field-nome");
+      if (el) el.focus();
+      reEnableBtn();
+      return;
+    }
+
+    // Montar objeto final
+    const norma = {
+      id: _editingId || CKN_Common.generateId("norma"),
+      codigo: _normaForm.codigo,
+      nome: _normaForm.nome,
+      descricao: _normaForm.descricao || "",
+      aplicacao: _normaForm.aplicacao || "",
+      documentos: _docsTemp.filter(d => d.nome && d.nome.trim()),
+      historico: _histTemp.filter(h => h.alteracao && h.alteracao.trim())
+    };
+
+    CKN_STORE.saveNorma(norma);
+    CKN_Common.closeModal("modal-norma");
+    CKN_Common.showToast("Norma salva com sucesso.");
+    _renderList();
+    // botão será re-renderizado com o modal fechado, mas reabilitar por segurança
+    reEnableBtn();
+  }
+
+  // ──────────────────────────────────────────────
+  // EVENTOS — registrados UMA ÚNICA VEZ
+  // ──────────────────────────────────────────────
+
+  function _bindEvents() {
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    // Listener de input — delegado no document para sobreviver a re-renders
+    document.addEventListener("input", e => {
+      // Busca de normas
+      if (e.target.id === "normas-search") {
+        _searchTerm = e.target.value;
+        _renderList();
+        const clearBtn = document.getElementById("btn-clear-search");
+        if (_searchTerm && !clearBtn) {
+          const searchWrapper = e.target.closest(".ckn-search");
+          if (searchWrapper) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "ckn-search__clear";
+            btn.id = "btn-clear-search";
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            searchWrapper.appendChild(btn);
+          }
+        } else if (!_searchTerm && clearBtn) {
+          clearBtn.remove();
+        }
+        return;
+      }
+
+      // Edição de campos de documentos
+      const docField = e.target.getAttribute("data-doc-field");
+      if (docField !== null) {
+        const idx = parseInt(e.target.getAttribute("data-doc-index"));
+        if (!isNaN(idx) && _docsTemp[idx]) {
+          _docsTemp[idx][docField] = e.target.value;
+        }
+        return;
+      }
+
+      // Edição de campos de histórico
+      const histField = e.target.getAttribute("data-hist-field");
+      if (histField !== null) {
+        const idx = parseInt(e.target.getAttribute("data-hist-index"));
+        if (!isNaN(idx) && _histTemp[idx]) {
+          _histTemp[idx][histField] = e.target.value;
+        }
+        return;
+      }
+    });
+
+    // Listener de click — delegado no document
+    document.addEventListener("click", e => {
+      // Verificar se estamos na página de normas (modal ou lista presente)
+      const onNormasPage = !!document.getElementById("normas-list") || !!document.getElementById("modal-norma");
+      if (!onNormasPage) return;
+
+      // Limpar busca
+      if (e.target.closest("#btn-clear-search")) {
+        _searchTerm = "";
+        const searchInput = document.getElementById("normas-search");
+        if (searchInput) searchInput.value = "";
+        _renderList();
+        const clearBtn = document.getElementById("btn-clear-search");
+        if (clearBtn) clearBtn.remove();
+        return;
+      }
+
+      // Nova norma
+      if (e.target.closest("#btn-nova-norma")) {
+        _openForm();
+        return;
+      }
+
+      // Fechar modal pelo backdrop ou botão
+      const closeTarget = e.target.closest("[data-close-modal='modal-norma']");
+      if (closeTarget) {
+        CKN_Common.closeModal("modal-norma");
+        return;
+      }
+
+      // Salvar norma — ÚNICA entrada de execução
+      if (e.target.closest("#btn-salvar-norma")) {
+        _saveForm();
+        return;
+      }
+
+      // Ações do card
+      const actionBtn = e.target.closest("[data-action]");
+      if (actionBtn && (document.getElementById("normas-list") || document.getElementById("modal-norma"))) {
+        const action = actionBtn.dataset.action;
+        const id = actionBtn.dataset.id;
+
+        if (action === "detail") {
+          _onNavigate(`#/norma-detail?id=${id}`);
+          return;
+        }
+        if (action === "edit" && _isAdmin) {
+          const norma = CKN_STORE.getNormaById(id);
+          if (norma) _openForm(norma);
+          return;
+        }
+        if (action === "delete" && _isAdmin) {
+          const norma = CKN_STORE.getNormaById(id);
+          if (!norma) return;
+          CKN_Common.confirm(`Excluir a norma "${norma.nome}"? Esta ação não pode ser desfeita.`).then(ok => {
+            if (ok) {
+              CKN_STORE.deleteNorma(id);
+              CKN_Common.showToast("Norma excluída com sucesso.");
+              _renderList();
+            }
+          });
+          return;
+        }
+      }
+
+      // Adicionar documento
+      if (e.target.closest("#btn-add-doc")) {
+        _docsTemp.push({ id: CKN_Common.generateId("doc"), nome: "", link: "" });
+        _renderDocsList();
+        return;
+      }
+
+      // Remover documento
+      const docRemove = e.target.closest("[data-doc-remove]");
+      if (docRemove && document.getElementById("modal-norma")) {
+        const idx = parseInt(docRemove.dataset.docRemove);
+        _docsTemp.splice(idx, 1);
+        _renderDocsList();
+        return;
+      }
+
+      // Adicionar histórico
+      if (e.target.closest("#btn-add-hist")) {
+        const today = new Date().toISOString().split("T")[0];
+        _histTemp.push({ id: CKN_Common.generateId("hist"), data: today, alteracao: "" });
+        _renderHistList();
+        return;
+      }
+
+      // Remover histórico
+      const histRemove = e.target.closest("[data-hist-remove]");
+      if (histRemove && document.getElementById("modal-norma")) {
+        const idx = parseInt(histRemove.dataset.histRemove);
+        _histTemp.splice(idx, 1);
+        _renderHistList();
+        return;
+      }
+    });
+  }
+
+  return { init, render };
+})();
+
+  </script>
+  <script name="js/pages/NormaDetail.js">
+/**
+ * Página de Detalhe do Processo — Admin e Pública.
+ */
+const CKN_PageProcessoDetail = (() => {
+
+  let _isAdmin = false;
+  let _processoId = null;
+  let _onNavigate = null;
+
+  function init(opts = {}) {
+    _isAdmin = opts.isAdmin || false;
+    _onNavigate = opts.onNavigate || (() => {});
+  }
+
+  // ──────────────────────────────────────────────
+  // FONTES DE DADOS
+  // ──────────────────────────────────────────────
+
+  function _getProcessoById(id) {
+    if (_isAdmin) return CKN_STORE.getProcessoById(id);
+    return (CKN_DATA.processos || []).find(p => p.id === id) || null;
+  }
+
+  function _getNormaById(id) {
+    if (_isAdmin) return CKN_STORE.getNormaById(id);
+    return (CKN_DATA.normas || []).find(n => n.id === id) || null;
+  }
+
+  // ──────────────────────────────────────────────
+  // RENDER
+  // ──────────────────────────────────────────────
+
+  function render(processoId) {
+    _processoId = processoId;
+    CKN_Layout.setActivePage("processos");
+
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    const processo = _getProcessoById(processoId);
+
+    if (!processo) {
+      content.innerHTML = `
+        <div class="ckn-page">
+          <div class="ckn-page__back">
+            <button type="button" class="ckn-btn ckn-btn--ghost" id="btn-back">
+              <i class="fa-solid fa-arrow-left"></i> Voltar
+            </button>
+          </div>
+          ${CKN_Common.emptyState("fa-folder-open", "Processo não encontrado", "O processo solicitado não existe ou foi removido.")}
+        </div>
+      `;
+      content.querySelector("#btn-back").addEventListener("click", () => {
+        _onNavigate("#/processos");
+      });
+      return;
+    }
+
+    CKN_Layout.setPageTitle(processo.nome);
+
+    const normasRelacionadas = (processo.normasRelacionadas || [])
+      .map(id => _getNormaById(id))
+      .filter(Boolean);
+
+    const documentos = processo.documentosRelacionados || [];
+    const passos = processo.passos || [];
+
+    content.innerHTML = `
+      <div class="ckn-page ckn-detail-page">
+        <div class="ckn-detail-page__nav">
+          <button type="button" class="ckn-btn ckn-btn--ghost" id="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Processos
+          </button>
+          ${_isAdmin ? `
+          <div class="ckn-detail-page__admin-actions">
+            <button type="button" class="ckn-btn ckn-btn--secondary" id="btn-edit-processo" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-pen-to-square"></i> Editar
+            </button>
+            <button type="button" class="ckn-btn ckn-btn--danger" id="btn-delete-processo" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-trash-can"></i> Excluir
+            </button>
+          </div>` : ""}
+        </div>
+
+        <div class="ckn-detail-header">
+          <span class="ckn-badge ckn-badge--lg ckn-badge--process">
+            <i class="fa-solid fa-diagram-project"></i> Processo
+          </span>
+          <h2 class="ckn-detail-header__title">${CKN_Common.escapeHtml(processo.nome)}</h2>
+        </div>
+
+        <div class="ckn-detail-grid">
+          <div class="ckn-detail-main">
+
+            ${processo.objetivo ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-bullseye"></i> Objetivo</h4>
+              <p class="ckn-detail-section__text">${CKN_Common.escapeHtml(processo.objetivo)}</p>
+            </div>` : ""}
+
+            ${passos.length > 0 ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-list-check"></i> Passos</h4>
+              <ol class="ckn-steps-list">
+                ${passos.map((passo, i) => `
+                  <li class="ckn-steps-list__item">
+                    <span class="ckn-steps-list__num">${i + 1}</span>
+                    <span class="ckn-steps-list__text">${CKN_Common.escapeHtml(passo)}</span>
+                  </li>
+                `).join("")}
+              </ol>
+            </div>` : ""}
+
+            ${documentos.length > 0 ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-regular fa-file"></i> Documentos Relacionados</h4>
+              <ul class="ckn-doc-list">
+                ${documentos.map(d => `
+                  <li class="ckn-doc-list__item">
+                    <i class="fa-regular fa-file-lines"></i>
+                    ${d.link
+                      ? `<a href="${CKN_Common.escapeHtml(d.link)}" target="_blank" rel="noopener noreferrer" class="ckn-link">${CKN_Common.escapeHtml(d.nome)}</a>`
+                      : `<span>${CKN_Common.escapeHtml(d.nome)}</span>`
+                    }
+                  </li>
+                `).join("")}
+              </ul>
+            </div>` : ""}
+
+          </div>
+
+          <div class="ckn-detail-aside">
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-book-bookmark"></i> Normas Relacionadas</h4>
+              ${normasRelacionadas.length === 0
+                ? `<p class="ckn-detail-section__empty">Nenhuma norma relacionada.</p>`
+                : `<div class="ckn-relation-list">
+                    ${normasRelacionadas.map(n => `
+                      <button type="button" class="ckn-relation-card" data-navigate="norma-detail" data-id="${CKN_Common.escapeHtml(n.id)}">
+                        <span class="ckn-badge">${CKN_Common.escapeHtml(n.codigo)}</span>
+                        <span>${CKN_Common.escapeHtml(n.nome)}</span>
+                        <i class="fa-solid fa-arrow-right ckn-relation-card__arrow"></i>
+                      </button>
+                    `).join("")}
+                   </div>`
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    _bindEvents(processo);
+  }
+
+  function _bindEvents(processo) {
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    content.querySelector("#btn-back").addEventListener("click", () => {
+      _onNavigate("#/processos");
+    });
+
+    if (_isAdmin) {
+      const editBtn = content.querySelector("#btn-edit-processo");
+      if (editBtn) {
+        editBtn.addEventListener("click", () => {
+          _onNavigate(`#/processos?edit=${processo.id}`);
+        });
+      }
+      const deleteBtn = content.querySelector("#btn-delete-processo");
+      if (deleteBtn) {
+        deleteBtn.addEventListener("click", () => {
+          CKN_Common.confirm(`Excluir o processo "${processo.nome}"?`).then(ok => {
+            if (ok) {
+              CKN_STORE.deleteProcesso(processo.id);
+              CKN_Common.showToast("Processo excluído com sucesso.");
+              _onNavigate("#/processos");
+            }
+          });
+        });
+      }
+    }
+
+    // Navegar para norma
+    content.querySelectorAll("[data-navigate='norma-detail']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        _onNavigate(`#/norma-detail?id=${btn.dataset.id}`);
+      });
+    });
+  }
+
+  return { init, render };
+})();
+
+  </script>
+  <script name="js/pages/Processos.js">
+/**
+ * Página de Processos — Admin e Pública.
+ *
+ * CORREÇÃO DO BUG DE DUPLICAÇÃO (mesmo padrão de Normas.js):
+ * Listeners registrados uma única vez via flag _eventsRegistered.
+ */
+const CKN_PageProcessos = (() => {
+
+  let _isAdmin = false;
+  let _searchTerm = "";
+  let _processoForm = {};
+  let _editingId = null;
+  let _passosTemp = [];
+  let _normasTemp = [];
+  let _docsTemp = [];
+  let _onNavigate = null;
+  let _eventsRegistered = false; // ← FLAG: garante registro único de listeners
+
+  function init(opts = {}) {
+    _isAdmin = opts.isAdmin || false;
+    _onNavigate = opts.onNavigate || (() => {});
+    render();
+    if (!_eventsRegistered) {
+      _bindEvents();
+      _eventsRegistered = true;
+    }
+  }
+
+  // ──────────────────────────────────────────────
+  // FONTES DE DADOS
+  // ──────────────────────────────────────────────
+
+  function _getProcessos() {
+    if (_isAdmin) return CKN_STORE.getProcessos();
+    return CKN_DATA.processos || [];
+  }
+
+  function _getAllNormas() {
+    if (_isAdmin) return CKN_STORE.getNormas();
+    return CKN_DATA.normas || [];
+  }
+
+  // ──────────────────────────────────────────────
+  // RENDER
+  // ──────────────────────────────────────────────
+
+  function render() {
+    CKN_Layout.setActivePage("processos");
+    CKN_Layout.setPageTitle("Processos");
+
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    content.innerHTML = `
+      <div class="ckn-page">
+        <div class="ckn-page__header">
+          <div>
+            <h2 class="ckn-page__title">Processos</h2>
+            <p class="ckn-page__subtitle">Consulte os processos e suas normas associadas.</p>
+          </div>
+          ${_isAdmin ? `
+          <button type="button" class="ckn-btn ckn-btn--primary" id="btn-novo-processo">
+            <i class="fa-solid fa-plus"></i> Novo Processo
+          </button>` : ""}
+        </div>
+
+        <div class="ckn-toolbar">
+          <div class="ckn-search">
+            <i class="fa-solid fa-magnifying-glass ckn-search__icon"></i>
+            <input
+              type="text"
+              class="ckn-search__input"
+              id="processos-search"
+              placeholder="Buscar por nome ou objetivo…"
+              value="${CKN_Common.escapeHtml(_searchTerm)}"
+              autocomplete="off"
+            />
+            ${_searchTerm ? `<button type="button" class="ckn-search__clear" id="btn-clear-search-proc"><i class="fa-solid fa-xmark"></i></button>` : ""}
+          </div>
+        </div>
+
+        <div id="processos-list" class="ckn-card-grid"></div>
+      </div>
+
+      ${_isAdmin ? _renderModal() : ""}
+    `;
+
+    _renderList();
+  }
+
+  function _renderList() {
+    const container = document.getElementById("processos-list");
+    if (!container) return;
+
+    const allProcessos = _getProcessos();
+    console.log(`[Processos] Renderizando ${allProcessos.length} processos da fonte ${_isAdmin ? "CKN_STORE" : "CKN_DATA"}.`);
+
+    const processos = CKN_Common.filterByTerm(allProcessos, _searchTerm, ["nome", "objetivo"]);
+
+    if (processos.length === 0) {
+      container.innerHTML = _searchTerm
+        ? CKN_Common.emptyState("fa-folder-open", "Nenhum processo encontrado", `Nenhum resultado para "${_searchTerm}".`)
+        : CKN_Common.emptyState("fa-diagram-project", "Nenhum processo cadastrado", _isAdmin ? 'Clique em "Novo Processo" para começar.' : "Não há processos cadastrados no momento.");
+      return;
+    }
+
+    const allNormas = _getAllNormas();
+    container.innerHTML = processos.map(p => _renderCard(p, allNormas)).join("");
+  }
+
+  function _renderCard(processo, allNormas) {
+    const normasNomes = (processo.normasRelacionadas || [])
+      .map(nid => {
+        const n = allNormas.find(x => x.id === nid);
+        return n ? n.codigo : null;
+      })
+      .filter(Boolean);
+
+    const docsCount = (processo.documentosRelacionados || []).length;
+    const passosCount = (processo.passos || []).length;
+
+    return `
+      <div class="ckn-card" data-id="${CKN_Common.escapeHtml(processo.id)}">
+        <div class="ckn-card__header">
+          <div class="ckn-card__tags">
+            ${normasNomes.map(n => `<span class="ckn-badge ckn-badge--outline">${CKN_Common.escapeHtml(n)}</span>`).join("")}
+            ${normasNomes.length === 0 ? `<span class="ckn-badge ckn-badge--neutral">Sem normas</span>` : ""}
+          </div>
+          ${_isAdmin ? `
+          <div class="ckn-card__actions">
+            <button type="button" class="ckn-icon-btn" title="Editar" data-action-proc="edit" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-pen-to-square"></i>
+            </button>
+            <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" title="Excluir" data-action-proc="delete" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-trash-can"></i>
+            </button>
+          </div>` : ""}
+        </div>
+        <div class="ckn-card__body">
+          <h3 class="ckn-card__title">${CKN_Common.escapeHtml(processo.nome)}</h3>
+          ${processo.objetivo ? `<p class="ckn-card__desc">${CKN_Common.escapeHtml(CKN_Common.truncate(processo.objetivo, 150))}</p>` : ""}
+        </div>
+        <div class="ckn-card__footer">
+          <div class="ckn-card__stats">
+            ${passosCount > 0 ? `<span class="ckn-card__stat"><i class="fa-solid fa-list-check"></i> ${passosCount} ${passosCount === 1 ? "passo" : "passos"}</span>` : ""}
+            ${docsCount > 0 ? `<span class="ckn-card__stat"><i class="fa-regular fa-file"></i> ${docsCount} ${docsCount === 1 ? "documento" : "documentos"}</span>` : ""}
+          </div>
+          <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" data-action-proc="detail" data-id="${CKN_Common.escapeHtml(processo.id)}">
+            Ver detalhes <i class="fa-solid fa-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+    `;
+  }
+
+  // ──────────────────────────────────────────────
+  // MODAL
+  // ──────────────────────────────────────────────
+
+  function _renderModal() {
+    return `
+      <div class="ckn-modal" id="modal-processo">
+        <div class="ckn-modal__backdrop" data-close-modal="modal-processo"></div>
+        <div class="ckn-modal__container ckn-modal__container--lg">
+          <div class="ckn-modal__header">
+            <h3 class="ckn-modal__title" id="modal-processo-title">Novo Processo</h3>
+            <button type="button" class="ckn-modal__close" data-close-modal="modal-processo">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+          <form class="ckn-modal__body" id="form-processo" novalidate>
+            <div class="ckn-form-group">
+              <label class="ckn-label" for="pfield-nome">Nome <span class="required">*</span></label>
+              <input type="text" class="ckn-input" id="pfield-nome" data-pfield="nome" placeholder="Nome do processo" autocomplete="off" />
+            </div>
+            <div class="ckn-form-group">
+              <label class="ckn-label" for="pfield-objetivo">Objetivo</label>
+              <textarea class="ckn-input ckn-textarea" id="pfield-objetivo" data-pfield="objetivo" placeholder="Qual o objetivo deste processo?" rows="3"></textarea>
+            </div>
+
+            <!-- Passos -->
+            <div class="ckn-form-section">
+              <div class="ckn-form-section__header">
+                <span class="ckn-form-section__title"><i class="fa-solid fa-list-check"></i> Passos</span>
+                <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" id="btn-add-passo">
+                  <i class="fa-solid fa-plus"></i> Adicionar passo
+                </button>
+              </div>
+              <div id="passos-list"></div>
+            </div>
+
+            <!-- Normas relacionadas -->
+            <div class="ckn-form-section">
+              <div class="ckn-form-section__header">
+                <span class="ckn-form-section__title"><i class="fa-solid fa-book-bookmark"></i> Normas Relacionadas</span>
+              </div>
+              <div id="normas-select-list" class="ckn-checkbox-list"></div>
+            </div>
+
+            <!-- Documentos -->
+            <div class="ckn-form-section">
+              <div class="ckn-form-section__header">
+                <span class="ckn-form-section__title"><i class="fa-regular fa-file"></i> Documentos Relacionados</span>
+                <button type="button" class="ckn-btn ckn-btn--ghost ckn-btn--sm" id="btn-add-pdoc">
+                  <i class="fa-solid fa-plus"></i> Adicionar documento
+                </button>
+              </div>
+              <div id="pdocs-list"></div>
+            </div>
+          </form>
+          <div class="ckn-modal__footer">
+            <button type="button" class="ckn-btn ckn-btn--ghost" data-close-modal="modal-processo">Cancelar</button>
+            <button type="button" class="ckn-btn ckn-btn--primary" id="btn-salvar-processo">
+              <i class="fa-solid fa-floppy-disk"></i> Salvar Processo
+            </button>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function _renderPassosList() {
+    const container = document.getElementById("passos-list");
+    if (!container) return;
+    if (_passosTemp.length === 0) {
+      container.innerHTML = `<p class="ckn-form-empty">Nenhum passo adicionado.</p>`;
+      return;
+    }
+    container.innerHTML = _passosTemp.map((passo, i) => `
+      <div class="ckn-subitem ckn-subitem--single" data-passo-index="${i}">
+        <span class="ckn-subitem__num">${i + 1}</span>
+        <input type="text" class="ckn-input" placeholder="Descrição do passo" value="${CKN_Common.escapeHtml(passo)}" data-passo-index="${i}" />
+        <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" data-passo-remove="${i}" title="Remover">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join("");
+  }
+
+  function _renderNormasSelect() {
+    const container = document.getElementById("normas-select-list");
+    if (!container) return;
+    const normas = _getAllNormas();
+    if (normas.length === 0) {
+      container.innerHTML = `<p class="ckn-form-empty">Nenhuma norma cadastrada.</p>`;
+      return;
+    }
+    container.innerHTML = normas.map(n => `
+      <label class="ckn-checkbox-item">
+        <input
+          type="checkbox"
+          class="ckn-checkbox"
+          value="${CKN_Common.escapeHtml(n.id)}"
+          ${_normasTemp.includes(n.id) ? "checked" : ""}
+          data-norma-check="${CKN_Common.escapeHtml(n.id)}"
+        />
+        <span class="ckn-checkbox-item__label">
+          <span class="ckn-badge">${CKN_Common.escapeHtml(n.codigo)}</span>
+          ${CKN_Common.escapeHtml(n.nome)}
+        </span>
+      </label>
+    `).join("");
+  }
+
+  function _renderPDocsList() {
+    const container = document.getElementById("pdocs-list");
+    if (!container) return;
+    if (_docsTemp.length === 0) {
+      container.innerHTML = `<p class="ckn-form-empty">Nenhum documento adicionado.</p>`;
+      return;
+    }
+    container.innerHTML = _docsTemp.map((doc, i) => `
+      <div class="ckn-subitem" data-pdoc-index="${i}">
+        <div class="ckn-subitem__fields">
+          <input type="text" class="ckn-input" placeholder="Nome do documento" value="${CKN_Common.escapeHtml(doc.nome)}" data-pdoc-field="nome" data-pdoc-index="${i}" />
+          <input type="text" class="ckn-input" placeholder="Link (opcional)" value="${CKN_Common.escapeHtml(doc.link || "")}" data-pdoc-field="link" data-pdoc-index="${i}" />
+        </div>
+        <button type="button" class="ckn-icon-btn ckn-icon-btn--danger" data-pdoc-remove="${i}" title="Remover">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </div>
+    `).join("");
+  }
+
+  // ──────────────────────────────────────────────
+  // FORM
+  // ──────────────────────────────────────────────
+
+  function _openForm(processo = null) {
+    _editingId = processo ? processo.id : null;
+    _processoForm = processo ? { ...processo } : { nome: "", objetivo: "" };
+    _passosTemp = processo ? [...(processo.passos || [])] : [];
+    _normasTemp = processo ? [...(processo.normasRelacionadas || [])] : [];
+    _docsTemp = processo ? JSON.parse(JSON.stringify(processo.documentosRelacionados || [])) : [];
+
+    const title = document.getElementById("modal-processo-title");
+    if (title) title.textContent = processo ? "Editar Processo" : "Novo Processo";
+
+    const fields = ["nome", "objetivo"];
+    fields.forEach(f => {
+      const el = document.querySelector(`[data-pfield="${f}"]`);
+      if (el) el.value = _processoForm[f] || "";
+    });
+
+    _renderPassosList();
+    _renderNormasSelect();
+    _renderPDocsList();
+    CKN_Common.openModal("modal-processo");
+  }
+
+  function _saveForm() {
+    // Proteção contra duplo clique
+    const saveBtn = document.getElementById("btn-salvar-processo");
+    if (saveBtn) {
+      if (saveBtn.disabled) return;
+      saveBtn.disabled = true;
+    }
+    const reEnableBtn = () => { if (saveBtn) saveBtn.disabled = false; };
+
+    const fields = ["nome", "objetivo"];
+    fields.forEach(f => {
+      const el = document.querySelector(`[data-pfield="${f}"]`);
+      if (el) _processoForm[f] = el.value.trim();
+    });
+
+    if (!_processoForm.nome) {
+      CKN_Common.showToast("O campo Nome é obrigatório.", "error");
+      const el = document.getElementById("pfield-nome");
+      if (el) el.focus();
+      reEnableBtn();
+      return;
+    }
+
+    // Ler checkboxes de normas
+    _normasTemp = [];
+    document.querySelectorAll("[data-norma-check]:checked").forEach(cb => {
+      _normasTemp.push(cb.value);
+    });
+
+    const processo = {
+      id: _editingId || CKN_Common.generateId("processo"),
+      nome: _processoForm.nome,
+      objetivo: _processoForm.objetivo || "",
+      passos: _passosTemp.filter(p => p && p.trim()),
+      normasRelacionadas: _normasTemp,
+      documentosRelacionados: _docsTemp.filter(d => d.nome && d.nome.trim())
+    };
+
+    CKN_STORE.saveProcesso(processo);
+    CKN_Common.closeModal("modal-processo");
+    CKN_Common.showToast("Processo salvo com sucesso.");
+    _renderList();
+    reEnableBtn();
+  }
+
+  // ──────────────────────────────────────────────
+  // EVENTOS — registrados UMA ÚNICA VEZ
+  // ──────────────────────────────────────────────
+
+  function _bindEvents() {
+    // Inputs — delegado no document
+    document.addEventListener("input", e => {
+      if (e.target.id === "processos-search") {
+        _searchTerm = e.target.value;
+        _renderList();
+        const clearBtn = document.getElementById("btn-clear-search-proc");
+        if (_searchTerm && !clearBtn) {
+          const sw = e.target.closest(".ckn-search");
+          if (sw) {
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "ckn-search__clear";
+            btn.id = "btn-clear-search-proc";
+            btn.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+            sw.appendChild(btn);
+          }
+        } else if (!_searchTerm && clearBtn) {
+          clearBtn.remove();
+        }
+        return;
+      }
+
+      // Edição de passos
+      if (e.target.hasAttribute("data-passo-index") && !e.target.hasAttribute("data-passo-remove")) {
+        const idx = parseInt(e.target.getAttribute("data-passo-index"));
+        if (!isNaN(idx)) _passosTemp[idx] = e.target.value;
+        return;
+      }
+
+      // Edição de documentos do processo
+      const pdocField = e.target.getAttribute("data-pdoc-field");
+      if (pdocField !== null) {
+        const idx = parseInt(e.target.getAttribute("data-pdoc-index"));
+        if (!isNaN(idx) && _docsTemp[idx]) _docsTemp[idx][pdocField] = e.target.value;
+        return;
+      }
+    });
+
+    // Clicks — delegado no document
+    document.addEventListener("click", e => {
+      const onProcessosPage = !!document.getElementById("processos-list") || !!document.getElementById("modal-processo");
+      if (!onProcessosPage) return;
+
+      // Limpar busca
+      if (e.target.closest("#btn-clear-search-proc")) {
+        _searchTerm = "";
+        const si = document.getElementById("processos-search");
+        if (si) si.value = "";
+        _renderList();
+        const cb = document.getElementById("btn-clear-search-proc");
+        if (cb) cb.remove();
+        return;
+      }
+
+      // Novo processo
+      if (e.target.closest("#btn-novo-processo")) {
+        _openForm();
+        return;
+      }
+
+      // Fechar modal
+      const closeTarget = e.target.closest("[data-close-modal='modal-processo']");
+      if (closeTarget) {
+        CKN_Common.closeModal("modal-processo");
+        return;
+      }
+
+      // Salvar processo — ÚNICA entrada de execução
+      if (e.target.closest("#btn-salvar-processo")) {
+        _saveForm();
+        return;
+      }
+
+      // Ações do card (usando data-action-proc para não colidir com normas)
+      const actionBtn = e.target.closest("[data-action-proc]");
+      if (actionBtn) {
+        const action = actionBtn.dataset.actionProc;
+        const id = actionBtn.dataset.id;
+
+        if (action === "detail") {
+          _onNavigate(`#/processo-detail?id=${id}`);
+          return;
+        }
+        if (action === "edit" && _isAdmin) {
+          const processo = CKN_STORE.getProcessoById(id);
+          if (processo) _openForm(processo);
+          return;
+        }
+        if (action === "delete" && _isAdmin) {
+          const processo = CKN_STORE.getProcessoById(id);
+          if (!processo) return;
+          CKN_Common.confirm(`Excluir o processo "${processo.nome}"?`).then(ok => {
+            if (ok) {
+              CKN_STORE.deleteProcesso(id);
+              CKN_Common.showToast("Processo excluído com sucesso.");
+              _renderList();
+            }
+          });
+          return;
+        }
+      }
+
+      // Adicionar passo
+      if (e.target.closest("#btn-add-passo")) {
+        _passosTemp.push("");
+        _renderPassosList();
+        return;
+      }
+
+      // Remover passo
+      const passoRemove = e.target.closest("[data-passo-remove]");
+      if (passoRemove && document.getElementById("modal-processo")) {
+        const idx = parseInt(passoRemove.dataset.passoRemove);
+        _passosTemp.splice(idx, 1);
+        _renderPassosList();
+        return;
+      }
+
+      // Adicionar doc de processo
+      if (e.target.closest("#btn-add-pdoc")) {
+        _docsTemp.push({ id: CKN_Common.generateId("doc"), nome: "", link: "" });
+        _renderPDocsList();
+        return;
+      }
+
+      // Remover doc de processo
+      const pdocRemove = e.target.closest("[data-pdoc-remove]");
+      if (pdocRemove && document.getElementById("modal-processo")) {
+        const idx = parseInt(pdocRemove.dataset.pdocRemove);
+        _docsTemp.splice(idx, 1);
+        _renderPDocsList();
+        return;
+      }
+    });
+
+    // Checkboxes de normas
+    document.addEventListener("change", e => {
+      if (e.target.hasAttribute("data-norma-check") && document.getElementById("modal-processo")) {
+        const id = e.target.value;
+        if (e.target.checked) {
+          if (!_normasTemp.includes(id)) _normasTemp.push(id);
+        } else {
+          _normasTemp = _normasTemp.filter(nid => nid !== id);
+        }
+      }
+    });
+  }
+
+  return { init, render };
+})();
+
+  </script>
+  <script name="js/pages/ProcessoDetail.js">
+/**
+ * Página de Detalhe do Processo — Admin e Pública.
+ */
+const CKN_PageProcessoDetail = (() => {
+
+  let _isAdmin = false;
+  let _processoId = null;
+  let _onNavigate = null;
+
+  function init(opts = {}) {
+    _isAdmin = opts.isAdmin || false;
+    _onNavigate = opts.onNavigate || (() => {});
+  }
+
+  // ──────────────────────────────────────────────
+  // FONTES DE DADOS
+  // ──────────────────────────────────────────────
+
+  function _getProcessoById(id) {
+    if (_isAdmin) return CKN_STORE.getProcessoById(id);
+    return (CKN_DATA.processos || []).find(p => p.id === id) || null;
+  }
+
+  function _getNormaById(id) {
+    if (_isAdmin) return CKN_STORE.getNormaById(id);
+    return (CKN_DATA.normas || []).find(n => n.id === id) || null;
+  }
+
+  // ──────────────────────────────────────────────
+  // RENDER
+  // ──────────────────────────────────────────────
+
+  function render(processoId) {
+    _processoId = processoId;
+    CKN_Layout.setActivePage("processos");
+
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    const processo = _getProcessoById(processoId);
+
+    if (!processo) {
+      content.innerHTML = `
+        <div class="ckn-page">
+          <div class="ckn-page__back">
+            <button type="button" class="ckn-btn ckn-btn--ghost" id="btn-back">
+              <i class="fa-solid fa-arrow-left"></i> Voltar
+            </button>
+          </div>
+          ${CKN_Common.emptyState("fa-folder-open", "Processo não encontrado", "O processo solicitado não existe ou foi removido.")}
+        </div>
+      `;
+      content.querySelector("#btn-back").addEventListener("click", () => {
+        _onNavigate("#/processos");
+      });
+      return;
+    }
+
+    CKN_Layout.setPageTitle(processo.nome);
+
+    const normasRelacionadas = (processo.normasRelacionadas || [])
+      .map(id => _getNormaById(id))
+      .filter(Boolean);
+
+    const documentos = processo.documentosRelacionados || [];
+    const passos = processo.passos || [];
+
+    content.innerHTML = `
+      <div class="ckn-page ckn-detail-page">
+        <div class="ckn-detail-page__nav">
+          <button type="button" class="ckn-btn ckn-btn--ghost" id="btn-back">
+            <i class="fa-solid fa-arrow-left"></i> Processos
+          </button>
+          ${_isAdmin ? `
+          <div class="ckn-detail-page__admin-actions">
+            <button type="button" class="ckn-btn ckn-btn--secondary" id="btn-edit-processo" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-pen-to-square"></i> Editar
+            </button>
+            <button type="button" class="ckn-btn ckn-btn--danger" id="btn-delete-processo" data-id="${CKN_Common.escapeHtml(processo.id)}">
+              <i class="fa-regular fa-trash-can"></i> Excluir
+            </button>
+          </div>` : ""}
+        </div>
+
+        <div class="ckn-detail-header">
+          <span class="ckn-badge ckn-badge--lg ckn-badge--process">
+            <i class="fa-solid fa-diagram-project"></i> Processo
+          </span>
+          <h2 class="ckn-detail-header__title">${CKN_Common.escapeHtml(processo.nome)}</h2>
+        </div>
+
+        <div class="ckn-detail-grid">
+          <div class="ckn-detail-main">
+
+            ${processo.objetivo ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-bullseye"></i> Objetivo</h4>
+              <p class="ckn-detail-section__text">${CKN_Common.escapeHtml(processo.objetivo)}</p>
+            </div>` : ""}
+
+            ${passos.length > 0 ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-list-check"></i> Passos</h4>
+              <ol class="ckn-steps-list">
+                ${passos.map((passo, i) => `
+                  <li class="ckn-steps-list__item">
+                    <span class="ckn-steps-list__num">${i + 1}</span>
+                    <span class="ckn-steps-list__text">${CKN_Common.escapeHtml(passo)}</span>
+                  </li>
+                `).join("")}
+              </ol>
+            </div>` : ""}
+
+            ${documentos.length > 0 ? `
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-regular fa-file"></i> Documentos Relacionados</h4>
+              <ul class="ckn-doc-list">
+                ${documentos.map(d => `
+                  <li class="ckn-doc-list__item">
+                    <i class="fa-regular fa-file-lines"></i>
+                    ${d.link
+                      ? `<a href="${CKN_Common.escapeHtml(d.link)}" target="_blank" rel="noopener noreferrer" class="ckn-link">${CKN_Common.escapeHtml(d.nome)}</a>`
+                      : `<span>${CKN_Common.escapeHtml(d.nome)}</span>`
+                    }
+                  </li>
+                `).join("")}
+              </ul>
+            </div>` : ""}
+
+          </div>
+
+          <div class="ckn-detail-aside">
+            <div class="ckn-detail-section">
+              <h4 class="ckn-detail-section__title"><i class="fa-solid fa-book-bookmark"></i> Normas Relacionadas</h4>
+              ${normasRelacionadas.length === 0
+                ? `<p class="ckn-detail-section__empty">Nenhuma norma relacionada.</p>`
+                : `<div class="ckn-relation-list">
+                    ${normasRelacionadas.map(n => `
+                      <button type="button" class="ckn-relation-card" data-navigate="norma-detail" data-id="${CKN_Common.escapeHtml(n.id)}">
+                        <span class="ckn-badge">${CKN_Common.escapeHtml(n.codigo)}</span>
+                        <span>${CKN_Common.escapeHtml(n.nome)}</span>
+                        <i class="fa-solid fa-arrow-right ckn-relation-card__arrow"></i>
+                      </button>
+                    `).join("")}
+                   </div>`
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+
+    _bindEvents(processo);
+  }
+
+  function _bindEvents(processo) {
+    const content = document.getElementById("ckn-content");
+    if (!content) return;
+
+    content.querySelector("#btn-back").addEventListener("click", () => {
+      _onNavigate("#/processos");
+    });
+
+    if (_isAdmin) {
+      const editBtn = content.querySelector("#btn-edit-processo");
+      if (editBtn) {
+        editBtn.addEventListener("click", () => {
+          _onNavigate(`#/processos?edit=${processo.id}`);
+        });
+      }
+      const deleteBtn = content.querySelector("#btn-delete-processo");
+      if (deleteBtn) {
+        deleteBtn.addEventListener("click", () => {
+          CKN_Common.confirm(`Excluir o processo "${processo.nome}"?`).then(ok => {
+            if (ok) {
+              CKN_STORE.deleteProcesso(processo.id);
+              CKN_Common.showToast("Processo excluído com sucesso.");
+              _onNavigate("#/processos");
+            }
+          });
+        });
+      }
+    }
+
+    // Navegar para norma
+    content.querySelectorAll("[data-navigate='norma-detail']").forEach(btn => {
+      btn.addEventListener("click", () => {
+        _onNavigate(`#/norma-detail?id=${btn.dataset.id}`);
+      });
+    });
+  }
+
+  return { init, render };
+})();
+
+  </script>
+  <script name="js/app.js">
+/**
+ * CKN_App — Roteador e inicializador central da aplicação.
+ *
+ * Gerencia a navegação client-side via hash routing.
+ * Funciona tanto na página administrativa quanto na pública.
+ */
+const CKN_App = (() => {
+
+  let _isAdmin = false;
+
+  /**
+   * Inicializa a aplicação.
+   * @param {boolean} isAdmin — true para página administrativa
+   */
+  function init(isAdmin = false) {
+    _isAdmin = isAdmin;
+
+    // Inicializar layout
+    CKN_Layout.init({
+      isAdmin: _isAdmin,
+      onNavigate: _handleRoute
+    });
+
+    // Inicializar páginas
+    CKN_PageNormaDetail.init({ isAdmin: _isAdmin, onNavigate: _navigate });
+    CKN_PageProcessoDetail.init({ isAdmin: _isAdmin, onNavigate: _navigate });
+
+    // Rota inicial
+    const hash = window.location.hash;
+    if (!hash || hash === "#" || hash === "#/") {
+      window.location.hash = "#/normas";
+    } else {
+      _handleRoute(hash);
+    }
+
+    // Escutar mudanças de hash
+    window.addEventListener("hashchange", () => {
+      _handleRoute(window.location.hash);
+    });
+
+    console.log(`[CKN_App] Inicializado. Modo: ${_isAdmin ? "Administrativo" : "Público"}.`);
+    if (!_isAdmin) {
+      console.log(`[CKN_App] Fonte de dados pública:`);
+      console.log(`  - CKN_DATA.normas.length = ${CKN_DATA.normas.length}`);
+      console.log(`  - CKN_DATA.processos.length = ${CKN_DATA.processos.length}`);
+    }
+  }
+
+  function _navigate(hash) {
+    window.location.hash = hash;
+  }
+
+  function _handleRoute(hash) {
+    if (!hash) hash = "#/normas";
+
+    const [pathPart, queryPart] = hash.replace("#/", "").split("?");
+    const route = pathPart || "normas";
+    const params = _parseQuery(queryPart || "");
+
+    const content = document.getElementById("ckn-content");
+    if (content) {
+      content.scrollTop = 0;
+    }
+
+    switch (route) {
+      case "normas":
+        CKN_PageNormas.init({ isAdmin: _isAdmin, onNavigate: _navigate });
+        // Abrir edição direto se vindo do detalhe
+        if (params.edit && _isAdmin) {
+          setTimeout(() => {
+            const norma = CKN_STORE.getNormaById(params.edit);
+            if (norma) {
+              const editBtn = document.querySelector(`[data-action="edit"][data-id="${norma.id}"]`);
+              if (editBtn) editBtn.click();
+            }
+          }, 100);
+        }
+        break;
+
+      case "norma-detail":
+        if (params.id) {
+          CKN_PageNormaDetail.render(params.id);
+        } else {
+          _navigate("#/normas");
+        }
+        break;
+
+      case "processos":
+        CKN_PageProcessos.init({ isAdmin: _isAdmin, onNavigate: _navigate });
+        if (params.edit && _isAdmin) {
+          setTimeout(() => {
+            const processo = CKN_STORE.getProcessoById(params.edit);
+            if (processo) {
+              const editBtn = document.querySelector(`[data-action="edit"][data-id="${processo.id}"]`);
+              if (editBtn) editBtn.click();
+            }
+          }, 100);
+        }
+        break;
+
+      case "processo-detail":
+        if (params.id) {
+          CKN_PageProcessoDetail.render(params.id);
+        } else {
+          _navigate("#/processos");
+        }
+        break;
+
+      default:
+        _navigate("#/normas");
+        break;
+    }
+  }
+
+  function _parseQuery(queryStr) {
+    if (!queryStr) return {};
+    return queryStr.split("&").reduce((acc, pair) => {
+      const [key, value] = pair.split("=");
+      if (key) acc[decodeURIComponent(key)] = decodeURIComponent(value || "");
+      return acc;
+    }, {});
+  }
+
+  return { init };
+})();
+
+  </script>
+
+  <!-- Inicialização -->
+  <script>
+    // Inicializa em modo PÚBLICO (somente leitura)
+    // Toda a interface deriva de CKN_DATA (js/data.js)
+    CKN_App.init(false);
+  </script>
+
+</body>
+</html>
